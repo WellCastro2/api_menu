@@ -25,6 +25,7 @@ schema_view = get_swagger_view(title='menu.com.br API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),
-    path('api/', schema_view),
+    path('', include('core.urls')),
+    path('docs/', schema_view),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

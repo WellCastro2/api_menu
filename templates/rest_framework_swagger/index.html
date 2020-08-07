@@ -26,6 +26,8 @@
           {% if USE_SESSION_AUTH %}
             {% if request.user.is_authenticated %}
             <a class="download-url-button button" style="background-color: #f98700" href="{{ LOGOUT_URL }}?next={{ request.path }}">{% trans "Logout" %}</a>
+            {% else %}
+            <a class="download-url-button button" style="background-color: #f98700" href="{{ LOGIN_URL }}?next={{ request.path }}">{% trans "Login" %}</a>
             {% endif %}
           {% endif %}
           </div>
