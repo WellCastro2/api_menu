@@ -1,1 +1,1 @@
-web: python manage.py runserver
+web: gunicorn --bind 0.0.0.0:8080 api_menu.wsgi
