@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
+from django.conf import settings
 from rest_framework_swagger.views import get_swagger_view
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
 
 schema_view = get_swagger_view(title='menu.com.br API')
 
@@ -26,5 +27,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.urls')),
     path('api/', schema_view),
-]
-urlpatterns += staticfiles_urlpatterns()
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

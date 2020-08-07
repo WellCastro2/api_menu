@@ -27,9 +27,6 @@ SECRET_KEY = '+5)x+o9q=3m*%vw#jlnnharcl9t7dp^i)f%sg-wnucfs+fm7(o'
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = [config('HOSTS', '127.0.0.1')]
-print(ALLOWED_HOSTS)
-print(DEBUG)
-print(type(DEBUG))
 # Application definition
 
 INSTALLED_APPS = [
