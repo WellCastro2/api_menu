@@ -1,23 +1,36 @@
 from rest_framework import generics
-from rest_framework.decorators import api_view
 
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
-
-from .models import Customer
-from .serializers import CustomerSerializer
-
-
-@api_view()
-def root(request):
-        return Response({
-            'customers': reverse('customer-list', request=request),
-        })
+from .models import Customer, Order
+from .serializers import CustomerSerializer, OrderSerializer
 
 
 class CustomerList(generics.ListCreateAPIView):
     """
-    Retorna uma lista de todos os usuários do sistema.
+    Retorna uma lista de todos os clientes.
     """
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+
+
+class Customer(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Cliente por UUID.
+    """
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+
+class OrderList(generics.ListCreateAPIView):
+    """
+    Retorna uma lista de todos os pedidos.
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class Order(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Pedido por UUID.
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
