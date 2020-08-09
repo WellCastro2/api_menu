@@ -19,3 +19,28 @@ class OrderSerializer(serializers.ModelSerializer):
 
         model = Order
         fields = ('uuid','status', 'total', 'customer', 'created_at')
+
+
+class OrderPostSerializer(serializers.ModelSerializer):
+    customer = serializers.CharField(write_only=True)
+    class Meta:
+
+        model = Order
+        fields = ('uuid','status', 'total', 'customer', 'created_at')
+
+    def validate_items(self):
+        customer_uuid = self.validated_data.get('customer')
+        # check DB user exists
+        if not Customer.objects.filter(uuid=customer_uuid).exists():
+            raise serializers.ValidationError('Customer not found')
+
+    def create(self, validated_data):
+        validated_data['customer'] = Customer.objects.get(uuid=validated_data['customer'])
+        return super(OrderPostSerializer, self).create(validated_data)
+
+
+class OrderPutSerializer(serializers.ModelSerializer):
+    class Meta:
+
+        model = Order
+        fields = ('uuid','status', 'total')
