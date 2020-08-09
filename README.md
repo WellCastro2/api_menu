@@ -25,6 +25,7 @@ Clicar no botão login do lado direito da tela
 
 ```python
 pip install -r requirements.txt
+python manage.py runserver
 ```
 
 ## Teste de integração
@@ -32,7 +33,7 @@ pip install -r requirements.txt
 python manage.py tests
 ```
 
-##Autenticação
+## Autenticação
 
 Para autenticação foi usado **Basic Authorization**
 >**Usuário:** Menu    - **Senha:** Menu#123
